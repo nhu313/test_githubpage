@@ -14,4 +14,36 @@ window.squatch.ready(function(){
   //place squatch.js functionality here
 
 });
+
+window.squatch.ready(function(){
+
+  //configure squatch.js for the tenant you are using
+  squatch.init({
+      tenantAlias: 'test_asr38u6r0jzok'
+  });
+
+  //object containing the init parameters for squatch.js
+  var initObj = {
+
+    //the object for the user you want to upsert
+    user: {
+      id: '123',
+      accountId: '123',
+      email: 'nhu.nguyen+saas123@houwzer.com',
+      firstName: 'Nhu',
+      lastName: 'nguyen123',
+      locale: 'en_US'
+    },
+    engagementMedium: 'EMBED',
+    widgetType: 'p/program-name/w/referrerWidget',
+        jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYWJjXzEyMyIsImFjY291bnRJZCI6ImFiY18xMjMiLCJlbWFpbCI6ImpvaG5AZXhhbXBsZS5jb20iLCJmaXJzdE5hbWUiOiJKb2huIiwibGFzdE5hbWUiOiJEb2UiLCJsb2NhbGUiOiJlbl9VUyJ9fQ.QfAsCpl91dbfT7M9mhWw9XIHgvyneRlCSD6dxomT-i4'
+  };
+
+  //update/register a referral participant and display a widget
+  squatch.widgets().upsertUser(initObj).then(function(response) {
+    user = response.user;
+  }).catch(function(error){
+    console.log(error);
+  }); 
+});
 </script>
