@@ -17,26 +17,30 @@ window.squatch.ready(function(){
 
 window.squatch.ready(function(){
 
-  //configure squatch.js for the tenant you are using
-  squatch.init({
-      tenantAlias: 'test_asr38u6r0jzok'
+squatch.init({
+    tenantAlias: 'test_abzxg88g30tn2'
   });
 
+  //object containing the init parameters for squatch.js
   var initObj = {
-  user: {                               
-    id: 'abc_123',                      
-    accountId: 'abc_123'       
-  },
-  engagementMedium: 'EMBED',
-  widgetType: 'p/program-name/w/referrerWidget',
-  jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYWJjXzEyMyIsImFjY291bnRJZCI6ImFiY18xMjMifX0.Sor56NRtkKqZKLLOy8177bFee5ukiS2-__R1s34KNOE'
-};
 
-squatch.widgets().render(initObj).then(function(response) {
-  user = response.user;
-}).catch(function(error){
-  console.log(error);
-});
+    //the object for the user you want to upsert
+    user: {                               
+      id: 'abc_123',                      
+      accountId: 'abc_123',       
+      email: 'john@example.com',                
+      firstName: 'John',       
+      lastName: 'Doe',
+      locale: 'en_US'
+    },
+        jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYWJjXzEyMyIsImFjY291bnRJZCI6ImFiY18xMjMiLCJlbWFpbCI6ImpvaG5AZXhhbXBsZS5jb20iLCJmaXJzdE5hbWUiOiJKb2huIiwibGFzdE5hbWUiOiJEb2UiLCJsb2NhbGUiOiJlbl9VUyJ9fQ.QfAsCpl91dbfT7M9mhWw9XIHgvyneRlCSD6dxomT-i4'
+  };
+
+  squatch.api().upsertUser(initObj).then(function(response) {
+    user = response.user;
+  }).catch(function(error){
+    console.log(error);
+  })
 
 });
 </script>
